@@ -10,12 +10,13 @@ pipeline {
                 sh 'mvn clean package'
                   }
                         }
-            }
+            
     stage ('Deploy') {
       steps {
         script {
           deploy adapters: [tomcat9( path: '', url: 'http://65.1.64.183:8080/')], contextPath: '/pipeline', onFailure: false, war: 'webapp/target/*.war' 
         }
       }
+    }
     }
 }
